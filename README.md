@@ -1,29 +1,42 @@
-# Sistema Panda
+﻿# Sistema Panda
 
-Arquitectura base profesional para **Importador Panda** con contenedores separados:
+[![Django](https://img.shields.io/badge/Django-5.x-0C4B33?logo=django&logoColor=white)](#)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791?logo=postgresql&logoColor=white)](#)
+[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)](#)
+[![Branching](https://img.shields.io/badge/Workflow-main%20%7C%20develop%20%7C%20feature-blue)](docs/branching-strategy.md)
 
-- `db`: PostgreSQL 15
-- `backend`: Django (Gunicorn)
-- `frontend`: Nginx (reverse proxy + estáticos)
-- `pgadmin`: gestión visual de base de datos
+Plataforma web para **Importaciones Panda** con arquitectura separada por contenedores:
+- `db`: PostgreSQL
+- `backend`: Django
+- `frontend`: Nginx (reverse proxy)
+- `pgadmin`: administraciÃ³n visual de DB
 
-## Estructura
+## Preview
+
+![Preview Sistema Panda](docs/assets/preview.svg)
+
+## Arquitectura
+
+```mermaid
+flowchart LR
+    U[Usuario] --> F[Nginx Frontend]
+    F --> B[Django Backend]
+    B --> D[(PostgreSQL)]
+    A[PgAdmin] --> D
+```
+
+## Estructura del Proyecto
 
 ```text
 sistema-panda/
-  backend/        # Django app + migraciones + seeders
-  frontend/       # Nginx como frontend/reverse proxy
-  infra/          # docker-compose y variables de despliegue
-  docs/           # documentación técnica
+  backend/        # Django app, migraciones, seeders
+  frontend/       # Nginx (proxy y estÃ¡ticos)
+  infra/          # Docker Compose
+  docs/           # Arquitectura y flujo de ramas
+  .github/        # Plantillas de PR
 ```
 
-## Variables de entorno
-
-- Archivo principal: `.env`
-- Para docker compose en Ubuntu: `infra/.env`
-- Para desarrollo local backend: `backend/.env`
-
-## Levantar en Docker (Ubuntu o Windows con Docker Desktop)
+## Levantar en Local con Docker
 
 ```bash
 cd infra
@@ -31,39 +44,51 @@ docker compose up -d --build
 ```
 
 Accesos:
-
 - Frontend: `http://localhost:8080`
 - PgAdmin: `http://localhost:8081`
-- Admin Django (vía frontend): `http://localhost:8080/admin/`
+- Django admin (vÃ­a frontend): `http://localhost:8080/admin/`
 
-## Credenciales demo iniciales
+## Variables de Entorno
 
-- Usuario Django: `admin`
-- Contraseña Django: `admin123`
-- PgAdmin: definidos en `.env`
+- RaÃ­z del proyecto: `.env`
+- Compose/infra: `infra/.env`
+- Backend local: `backend/.env`
 
-## Migraciones y seeders
-
-Las migraciones están versionadas en `backend/inventario/migrations/`.
-
-Seeder idempotente:
+## Migraciones y Seeder
 
 ```bash
 cd backend
+python manage.py makemigrations
+python manage.py migrate
 python manage.py seed_demo
 ```
 
-Este comando crea/actualiza:
+## Flujo de Trabajo (Equipo)
 
-- Usuario admin demo
-- Categorías
-- Proveedores
-- Productos realistas para inventario
+```mermaid
+flowchart LR
+    D[develop] -->|crear| F1[feature/inventario-modulo]
+    F1 -->|PR| D
+    D -->|release PR| M[main]
+    M -->|urgente| H[hotfix/*]
+    H -->|PR| M
+    H -->|back-merge| D
+```
 
-## Flujo recomendado de cambios
+MÃ¡s detalle: [Branching Strategy](docs/branching-strategy.md) y [Contributing Guide](CONTRIBUTING.md).
 
-1. Crear/editar modelos.
-2. Ejecutar `python manage.py makemigrations`.
-3. Ejecutar `python manage.py migrate`.
-4. Actualizar seeder si aplica.
-5. Probar en local y en contenedores.
+## Reglas de Calidad
+
+- No push directo a `main` ni `develop`.
+- Todo cambio entra por Pull Request.
+- Commits con convenciÃ³n: `feat`, `fix`, `chore`, `docs`, etc.
+- PR pequeÃ±o, enfocado y con evidencia de pruebas.
+
+## Roadmap Corto
+
+- Inventario: CRUD completo + filtros avanzados.
+- Proveedores: CRUD + contactos.
+- Compras/Ventas: flujos transaccionales.
+- Reportes: mÃ©tricas operativas y comerciales.
+
+
