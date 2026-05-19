@@ -59,11 +59,35 @@
     .tr{text-align:right;font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
     .tc{text-align:center}
     .stock-val{display:inline-block;min-width:3ch;text-align:center}
-    .portal{min-height:100vh;padding:24px;background:
-      radial-gradient(1200px 480px at 50% -10%, #ffffff 0%, #eef2f8 45%, #e3e8f1 100%)}
-    .portal-top{max-width:1120px;margin:0 auto 20px;background:#fff;border:1px solid var(--bd);border-radius:14px;padding:12px 18px;display:flex;justify-content:space-between;align-items:center}
-    .portal-main{max-width:1120px;margin:0 auto;min-height:calc(100vh - 176px);display:grid;place-items:center}
-    .portal-card{text-align:center;max-width:620px;background:#ffffffd9;border:1px solid #dbe3f1;border-radius:18px;padding:28px 24px;box-shadow:0 16px 40px rgba(11,61,145,.08)}
+    .portal{min-height:100vh;padding:18px;background:
+      radial-gradient(1000px 420px at 16% -10%, #f8fbff 0%, #eaf0f8 46%, #dde4ef 100%)}
+    .portal-wrap{max-width:1160px;margin:0 auto}
+    .portal-top{background:#fff;border:1px solid var(--bd);border-radius:14px;padding:12px 18px;display:flex;justify-content:space-between;align-items:center}
+    .portal-hero{margin-top:14px;display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
+    .hero-main{position:relative;background:linear-gradient(140deg,#ffffff 0%,#f4f8ff 100%);border:1px solid var(--bd);border-radius:18px;padding:34px 30px;overflow:hidden}
+    .hero-main::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:999px;background:radial-gradient(circle,#d7e5ff 0%,rgba(215,229,255,0) 68%)}
+    .hero-title{margin:0 0 10px;color:#062d6d;font-size:38px;line-height:1.08;letter-spacing:-.02em}
+    .hero-sub{margin:0 0 20px;color:#334155;font-size:17px;max-width:60ch}
+    .hero-cta{display:flex;gap:10px;flex-wrap:wrap}
+    .btn-lg{padding:12px 22px;font-size:15px}
+    .hero-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:20px}
+    .metric{background:#fff;border:1px solid #dbe4f3;border-radius:12px;padding:12px}
+    .metric strong{display:block;color:#0b3d91;font-size:20px}
+    .metric span{font-size:12px;color:#475569}
+    .hero-side{display:grid;gap:12px}
+    .brand-card,.login-card{background:#fff;border:1px solid var(--bd);border-radius:16px;padding:18px}
+    .brand-card{display:grid;place-items:center;min-height:198px}
+    .brand-card img{width:220px;height:auto}
+    .login-card h3{margin:0 0 8px;color:#0b3d91}
+    .login-card p{margin:0 0 14px;color:#475569;font-size:14px}
+    .portal-section{margin-top:14px;background:#fff;border:1px solid var(--bd);border-radius:16px;padding:20px}
+    .portal-section h3{margin:0 0 12px;color:#0b3d91}
+    .feature-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+    .feature{border:1px solid #dbe4f3;background:#f8fbff;border-radius:12px;padding:12px}
+    .feature .material-symbols-outlined{font-size:20px;color:#0b3d91}
+    .feature h4{margin:8px 0 6px;font-size:15px;color:#0f172a}
+    .feature p{margin:0;color:#475569;font-size:13px;line-height:1.3}
+    .portal-foot{margin-top:14px;text-align:center;padding:12px;color:#64748b;font-size:12px}
     .box{background:#fff;border:1px solid var(--bd);border-radius:14px;padding:22px;width:min(900px,100%)}
     .row{display:grid;grid-template-columns:1fr auto auto auto;gap:8px;align-items:center}
     .inp{height:40px;border:1px solid var(--bd);border-radius:8px;padding:0 10px;width:100%}
@@ -74,12 +98,34 @@
     .err{background:#fee2e2;color:#8b0000;border:1px solid #fecaca;padding:10px;border-radius:8px;margin-bottom:10px}
     .modal-close-x{background:transparent;border:0;color:#b91c1c;padding:4px 8px;border-radius:8px;transition:background-color .15s ease}
     .modal-close-x:hover{background:rgba(185,28,28,.10)}
+    @media(max-width:1140px){
+      .portal-wrap{max-width:980px}
+      .hero-title{font-size:34px}
+      .feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
     @media(max-width:960px){
       .app{grid-template-columns:1fr;height:100vh}
       .app.sidebar-collapsed{grid-template-columns:1fr}
       .sb{height:auto;max-height:170px}
       .grid{grid-template-columns:1fr}
       .row{grid-template-columns:1fr}
+      .portal-hero{grid-template-columns:1fr}
+      .hero-title{font-size:30px}
+      .feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .hero-metrics{grid-template-columns:1fr}
+      .portal-top{padding:10px 12px}
+      .hero-main{padding:24px 18px}
+    }
+    @media(max-width:640px){
+      .portal{padding:10px}
+      .portal-top{gap:8px}
+      .portal-top img{height:38px !important}
+      .portal-top .btn{padding:8px 12px;font-size:13px}
+      .hero-title{font-size:25px}
+      .hero-sub{font-size:15px}
+      .hero-cta{display:grid;grid-template-columns:1fr}
+      .hero-cta .btn{width:100%}
+      .feature-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -139,24 +185,59 @@
 </div>
 {% else %}
 <div class="portal">
-  <header class="portal-top">
-    <div style="display:flex;align-items:center;gap:10px;">
-      <img src="{% static 'img/ImportacionesPanda-Logo.png' %}?v=4" alt="Panda" style="height:42px;width:auto;">
-      <span style="font-weight:700;color:var(--b);font-size:16px;">Importaciones Panda</span>
-    </div>
-    <button class="btn btn-p" id="openLogin" type="button" style="padding:8px 18px;">Iniciar sesión</button>
-  </header>
-  <main class="portal-main">
-    <div class="portal-card">
-      <img src="{% static 'img/ImportacionesPanda-Logo.png' %}?v=4" alt="Logo Panda" style="width:240px;height:auto;margin-bottom:20px;">
-      <h1 style="color:var(--b);margin:0 0 8px;font-size:28px;">Importaciones Panda</h1>
-      <p style="color:var(--t);margin:0 0 24px;font-size:15px;">Portal institucional y plataforma de gestión comercial. Control de inventario, compras, ventas y más.</p>
-      <button class="btn btn-p" id="openLogin2" type="button" style="padding:12px 32px;font-size:15px;">Acceder al sistema</button>
-    </div>
-  </main>
-  <footer style="text-align:center;padding:16px;color:#64748b;font-size:12px;">
-    &copy; 2026 Importaciones Panda &mdash; Todos los derechos reservados.
-  </footer>
+  <div class="portal-wrap">
+    <header class="portal-top">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <img src="{% static 'img/ImportacionesPanda-Logo.png' %}?v=5" alt="Panda" style="height:46px;width:auto;">
+        <div>
+          <div style="font-weight:800;color:#062d6d;font-size:17px;">Importaciones Panda</div>
+          <div style="font-size:12px;color:#64748b;">Retail mayorista y minorista</div>
+        </div>
+      </div>
+      <button class="btn btn-p" id="openLogin" type="button" style="padding:9px 18px;">Iniciar sesión</button>
+    </header>
+
+    <main class="portal-hero">
+      <section class="hero-main">
+        <h1 class="hero-title">Gestión comercial inteligente para una tienda que vende de todo</h1>
+        <p class="hero-sub">Controla inventario, compras, clientes, ventas y reportes desde una sola plataforma preparada para operación diaria de alto movimiento.</p>
+        <div class="hero-cta">
+          <button class="btn btn-p btn-lg" id="openLogin2" type="button">Acceder al sistema</button>
+          <button class="btn btn-s btn-lg" type="button">Ver módulos</button>
+        </div>
+        <div class="hero-metrics">
+          <div class="metric"><strong>+5 módulos</strong><span>Operación centralizada</span></div>
+          <div class="metric"><strong>Stock en vivo</strong><span>Control por categoría</span></div>
+          <div class="metric"><strong>Escalable</strong><span>Docker + PostgreSQL</span></div>
+        </div>
+      </section>
+
+      <aside class="hero-side">
+        <div class="brand-card">
+          <img src="{% static 'img/ImportacionesPanda-Logo.png' %}?v=5" alt="Logo Panda">
+        </div>
+        <div class="login-card">
+          <h3>Acceso al sistema</h3>
+          <p>Acceso para administración, personal y gestión operativa con enfoque empresarial.</p>
+          <button class="btn btn-p" id="openLogin3" type="button" style="width:100%;">Ingresar ahora</button>
+        </div>
+      </aside>
+    </main>
+
+    <section class="portal-section">
+      <h3>Módulos principales</h3>
+      <div class="feature-grid">
+        <article class="feature"><span class="material-symbols-outlined">inventory_2</span><h4>Inventario</h4><p>Productos, categorías, stock, costos y precios.</p></article>
+        <article class="feature"><span class="material-symbols-outlined">business</span><h4>Proveedores</h4><p>Alta de proveedores, contactos y condiciones.</p></article>
+        <article class="feature"><span class="material-symbols-outlined">point_of_sale</span><h4>Ventas</h4><p>Registro comercial y salida automática de stock.</p></article>
+        <article class="feature"><span class="material-symbols-outlined">bar_chart</span><h4>Reportes</h4><p>Indicadores para decisiones de compra y margen.</p></article>
+      </div>
+    </section>
+
+    <footer class="portal-foot">
+      &copy; 2026 Importaciones Panda &mdash; Plataforma de gestión comercial
+    </footer>
+  </div>
 </div>
 {% endif %}
 
@@ -1267,8 +1348,10 @@ const open=document.getElementById('openLogin');
 const close=document.getElementById('closeLogin');
 const hasError={% if messages %}true{% else %}false{% endif %};
 const open2=document.getElementById('openLogin2');
+const open3=document.getElementById('openLogin3');
 if(open) open.addEventListener('click',()=>modal.style.display='flex');
 if(open2) open2.addEventListener('click',()=>modal.style.display='flex');
+if(open3) open3.addEventListener('click',()=>modal.style.display='flex');
 if(close) close.addEventListener('click',()=>modal.style.display='none');
 if(modal) modal.addEventListener('click',(e)=>{if(e.target===modal) modal.style.display='none';});
 if(hasError) modal.style.display='flex';
